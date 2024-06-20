@@ -22,34 +22,40 @@ if (!empty($_POST)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>FORMULARIO</title>
 </head>
 
 <body>
-<div class="container">
-    <button id="cadAgora"> Cadastrar-se agora </button>
+    <div class="container">
+        <button id="cadAgora"> Cadastrar-se agora </button>
 
-    <div class="conjuntoForms hidden">
-        <h1 class="cadastrar"> Cadastre-se </h1>
-        <form action="index.php" method="POST" class="formulario">
-            <label class="labelNome" for="name"> Nome*</label>
-            <input type="text" class="name" placeholder="Digite o seu nome" name="name" required>
+        <div class="conjuntoForms hidden">
+            <h1 class="cadastrar"> Cadastre-se </h1>
+            <form action="index.php" method="POST" class="formulario">
+                <label class="labelNome" for="name"> Nome*</label>
+                <input type="text" class="name" placeholder="Digite o seu nome" name="name" required>
 
-            <label class="labelEmail" for="email"> Email</label>
-            <input type="email" class="email" placeholder="Digite o seu email" name="email">
+                <label class="labelEmail" for="email"> Email</label>
+                <input type="email" class="email" placeholder="Digite o seu email" name="email">
 
-            <label class="labelPassword" for="senha">Criar senha*</label>
-            <input type="password" class="password" placeholder="Digite uma senha" name="password" required>
+                <label class="labelPassword" for="senha">Criar senha*</label>
+                <div class="olho1"> <input type="password" class="password" placeholder="Digite uma senha" name="password" required>
+                    <i class="fa-solid fa-eye" style="color: #ffffff;" id="olhoAberto1"></i>
+                </div>
 
-            <label class="labelConfPassword" for="confSenha"> Cofirmar senha*</label >
-            <input type="password" class="confPassword" placeholder="Confirme sua senha" name="confPassword" required>
 
-            <button type="submit" class="submit"  name="submit">Enviar </button>
-        </form>
+                <label class="labelConfPassword" for="confSenha"> Cofirmar senha*</label>
+                <div class="olho2"> <input type="password" class="confPassword" placeholder="Confirme sua senha" name="confPassword" required>
+                <i class="fa-solid fa-eye" style="color: #ffffff;" id="olhoAberto2"></i>
+                </div>
+
+                <button type="submit" class="submit" name="submit">Enviar </button>
+            </form>
+        </div>
+
+        <div class="footer"></div>
     </div>
-
-    <div class="footer"></div>
-</div>
 </body>
 
 <script>
@@ -62,6 +68,29 @@ if (!empty($_POST)) {
     const confPassword = document.querySelector('.confPassword');
     const form = document.querySelector('.formulario');
     const cadastrar = document.querySelector('.cadastrar');
+    const olhoAberto1 = document.querySelector('#olhoAberto1');
+    const olhoAberto2 = document.querySelector('#olhoAberto2');
+
+    olhoAberto1.addEventListener("click", function () {
+        const type = password.type == "password" ? "text" : "password";
+        password.type = type;
+         
+        if  (olhoAberto1.style.color == "#ffffff");
+        {
+             olhoAberto1.style.color = "#FF0000";}
+
+                
+
+    }
+
+    )
+
+    olhoAberto2.addEventListener("click", function () {
+        const type = confPassword.type == "password" ? "text" : "password";
+        confPassword.type = type;
+
+
+    })
 
     cadAgora.addEventListener("click", () => {
         conjuntoForms.classList.remove("hidden");
@@ -71,7 +100,7 @@ if (!empty($_POST)) {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (password.value !== confPassword.value || password.value.length <8) {
+        if (password.value !== confPassword.value || password.value.length < 8) {
             alert("Senha não aceita! verifique se a sua senha está idêntica á confirmação e se possui mais de 8 caracteres.");
             return;
         }
@@ -87,12 +116,11 @@ if (!empty($_POST)) {
             return;
         }
         cadastrar.innerHTML = "Obrigada! suas informações foram enviadas.";
-        name.value= " ";
-        email.value= " ";
+        name.value = " ";
+        email.value = " ";
         password.value = " ";
         confPassword.value = " ";
     });
-
 </script>
 
 <style>
@@ -163,6 +191,8 @@ if (!empty($_POST)) {
     .password,
     .confPassword,
     .submit {
+        width: 680px;
+        height: 34px;
         justify-content: center;
         margin-left: 20px;
         color: black;
@@ -194,6 +224,26 @@ if (!empty($_POST)) {
         height: 60px;
         align-items: center;
         background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 91, 1) 35%, rgba(0, 234, 255, 1) 100%);
+    }
+
+    .olho1, .olho2{
+        width: 710px;
+        height: 40px;
+        display: flex;
+        margin-bottom: 80px;
+    }
+
+    #olhoAberto1, #olhoAberto2{
+        width:18px ;
+        height: 16px;
+        justify-content: right;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #olhoAberto2:active{
+        color: red;
     }
 </style>
 
