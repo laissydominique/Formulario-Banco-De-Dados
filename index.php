@@ -47,7 +47,7 @@ if (!empty($_POST)) {
 
                 <label class="labelConfPassword" for="confSenha"> Cofirmar senha*</label>
                 <div class="olho2"> <input type="password" class="confPassword" placeholder="Confirme sua senha" name="confPassword" required>
-                <i class="fa-solid fa-eye" style="color: #ffffff;" id="olhoAberto2"></i>
+                    <i class="fa-solid fa-eye" style="color: #ffffff;" id="olhoAberto2"></i>
                 </div>
 
                 <button type="submit" class="submit" name="submit">Enviar </button>
@@ -71,31 +71,33 @@ if (!empty($_POST)) {
     const olhoAberto1 = document.querySelector('#olhoAberto1');
     const olhoAberto2 = document.querySelector('#olhoAberto2');
 
-    olhoAberto1.addEventListener("click", function () {
+    olhoAberto1.addEventListener("click", function() {
         const type = password.type == "password" ? "text" : "password";
         password.type = type;
-         
-        if  (olhoAberto1.style.color == "#ffffff");
-        {
-             olhoAberto1.style.color = "#FF0000";}
 
-                
+        if (olhoAberto1.style.color == "rgb(255, 0, 0)") { // Check if the color is red
+            olhoAberto1.style.color = "#ffffff"; // Change to white
+        } else {
+            olhoAberto1.style.color = "#FF0000"; // Change to red
+        }
 
-    }
+    })
 
-    )
-
-    olhoAberto2.addEventListener("click", function () {
+    olhoAberto2.addEventListener("click", function() {
         const type = confPassword.type == "password" ? "text" : "password";
         confPassword.type = type;
 
+        if (olhoAberto2.style.color == "rgb(255, 0, 0)") { // Check if the color is red
+            olhoAberto2.style.color = "#ffffff"; // Change to white
+        } else {
+            olhoAberto2.style.color = "#FF0000"; // Change to red
+        }
 
     })
 
     cadAgora.addEventListener("click", () => {
         conjuntoForms.classList.remove("hidden");
         cadAgora.classList.add("hidden");
-        name.focus();
     });
 
     form.addEventListener('submit', async (e) => {
@@ -191,6 +193,8 @@ if (!empty($_POST)) {
     .password,
     .confPassword,
     .submit {
+        background-color: black;
+        border-color: white;
         width: 680px;
         height: 34px;
         justify-content: center;
@@ -198,19 +202,27 @@ if (!empty($_POST)) {
         color: black;
     }
 
+    .name,
+    .email,
+    .password,
+    .confPassword{
+        background-color: black;
+        border-style:initial;
+        color: #ffffff;
+    }
     label {
         justify-content: center;
         margin-left: 20px;
         color: white;
     }
 
-
-
     .submit {
-        color: black;
         width: 680px;
         cursor: pointer;
+        border-style:double;
+        color: #ffffff;
     }
+
 
     .exibeDados {
         color: azure;
@@ -226,24 +238,28 @@ if (!empty($_POST)) {
         background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 121, 91, 1) 35%, rgba(0, 234, 255, 1) 100%);
     }
 
-    .olho1, .olho2{
+    .olho1,
+    .olho2 {
         width: 710px;
-        height: 40px;
+        height: 20px;
         display: flex;
         margin-bottom: 80px;
     }
 
-    #olhoAberto1, #olhoAberto2{
-        width:18px ;
+    .confPassword {
+        display: flex;
+        align-items: center;
+        margin-bottom: 80px;
+    }
+
+    #olhoAberto1,
+    #olhoAberto2 {
+        width: 18px;
         height: 16px;
         justify-content: right;
         align-items: center;
         text-align: center;
         cursor: pointer;
-    }
-
-    #olhoAberto2:active{
-        color: red;
     }
 </style>
 
